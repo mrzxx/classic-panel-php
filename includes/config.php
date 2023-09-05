@@ -1,8 +1,5 @@
 <?php
 
-error_reporting ( E_ALL ) ;
-ini_set ( 'display_errors' , 1 ) ;
-
 
 
 echo !defined("security") ? die("Error 404") : null;
@@ -14,7 +11,7 @@ try {
 }//  
 date_default_timezone_set('Europe/Istanbul');
 //Ayarlar NOT : index.php içindeki delete.php ye yönlendiren ajax komutundaki linkide düzenleyin
-$firma_adi = "Accascup Panel";
+$firma_adi = "OpusArte İçerik Paneli";
 $weblink = "https://opusarte.com.tr/sip/";
 $filelink = "https://opusarte.com.tr/sip/";
 $siplink = "https://opusarte.com.tr/sip/";
