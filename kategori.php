@@ -38,6 +38,7 @@ $categories_tr = $db->query("SELECT * FROM category WHERE langid=0", PDO::FETCH_
                             <select class="form-control" name="lang" id="title2" required>
                                 <option value ="tr">Türkçe</option>
                                 <option value ="en">İngilizce</option>
+                                <option value ="ar">Arapça</option>
                             </select>
                         </div>
                         <div class="finput">

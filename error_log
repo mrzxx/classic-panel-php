@@ -1,0 +1,20 @@
+[20-Sep-2023 17:49:03 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to a member function rowCount() on bool in /home/opusartecom/public_html/sip/delete.php:120
+Stack trace:
+#0 {main}
+  thrown in /home/opusartecom/public_html/sip/delete.php on line 120
+[20-Sep-2023 17:49:07 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to a member function rowCount() on bool in /home/opusartecom/public_html/sip/delete.php:120
+Stack trace:
+#0 {main}
+  thrown in /home/opusartecom/public_html/sip/delete.php on line 120
+[20-Sep-2023 17:49:22 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to a member function rowCount() on bool in /home/opusartecom/public_html/sip/delete.php:120
+Stack trace:
+#0 {main}
+  thrown in /home/opusartecom/public_html/sip/delete.php on line 120
+[20-Sep-2023 17:50:28 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to a member function rowCount() on bool in /home/opusartecom/public_html/sip/delete.php:120
+Stack trace:
+#0 {main}
+  thrown in /home/opusartecom/public_html/sip/delete.php on line 120
+[20-Sep-2023 17:50:33 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to a member function rowCount() on bool in /home/opusartecom/public_html/sip/delete.php:120
+Stack trace:
+#0 {main}
+  thrown in /home/opusartecom/public_html/sip/delete.php on line 120

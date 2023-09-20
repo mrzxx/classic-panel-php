@@ -116,8 +116,8 @@ if($_GET["anaresimsil"] == 1){
 
 
     if($table == 'product'){
-        $query3000 = $db->query("SELECT * FROM img WHERE productid={$id}",PDO::FETCH_ASSOC);
-        if($query3000->rowCount() > 0){
+        $query3000 = $db->query("SELECT * FROM img WHERE id={$id}",PDO::FETCH_ASSOC);
+        if($query3000){
             foreach ($query3000 as $row) {
                 unlink('../assets/img/product/imgs/'.$row["img"]);
                 $del3000 = $db->prepare("DELETE FROM img WHERE id = :id");

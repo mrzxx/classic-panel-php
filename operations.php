@@ -174,21 +174,21 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                         $rsmbaslik = seo($_POST["title"]);
                         $foo->file_new_name_body = $rsmbaslik;
                         $resim=$foo->file_new_name_body;
-                        $foo->image_resize = true;
+                        //$foo->image_resize = true;
                         $foo->image_convert = 'jpg';
                         //$foo->jpeg_quality = 65;
-                        $foo->image_x = 1920;
-                        $foo->image_ratio_y = true;
-                        $foo->Process('../assets/img/product/');
+                        //$foo->image_x = 1920;
+                        //$foo->image_ratio_y = true;
+                        $foo->Process('../assets/img/product/big/');
     
-                        // $foo->file_new_name_body = $rsmbaslik;
-                        // $resim=$foo->file_new_name_body;
-                        // $foo->image_resize = true;
-                        // $foo->image_convert = 'jpg';
-                        // //$foo->jpeg_quality = 65;
-                        // $foo->image_x = 526;
-                        // $foo->image_ratio_y = true;
-                        // $foo->Process('../assets/images/blog/little/');
+                        $foo->file_new_name_body = $rsmbaslik;
+                        $resim=$foo->file_new_name_body;
+                        $foo->image_resize = true;
+                        $foo->image_convert = 'jpg';
+                        $foo->jpeg_quality = 65;
+                        $foo->image_x = 1366;
+                        $foo->image_ratio_y = true;
+                        $foo->Process('../assets/img/product/little/');
                         
                         if ( $foo->processed ) {
                             $_SESSION["success"] = "Resim Başarı ile yüklendi.";
@@ -209,11 +209,6 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                     langid=?,
                     category=?,
                     dimensions=?,
-                    special=?,
-                    description_main=?,
-                    description_main_sub=?,
-                    product_spekt=?,
-                    packet_spekt=?,
                     active=?,
                     seotitle=?,
                     seodescription=?,
@@ -221,18 +216,13 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                     seokeyword=?");
                     $insert = $doinsert->execute(array(
                         $_POST["title"],
-                        "",
+                        $_POST["description"],
                         $img,
                         $_POST["img_alt"],
                         $_POST["lang"],
                         0,
                         $_POST["category"],
                         $_POST["dimensions"],
-                        $_POST["special"],
-                        $_POST["description_main"],
-                        $_POST["description_main_sub"],
-                        $_POST["product_spekt"],
-                        $_POST["packet_spekt"],
                         $active,
                         $seotitle,
                         $_POST["seodescription"],
@@ -241,75 +231,6 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                     ));
                     if($insert){
                         $_SESSION["success"] = $_SESSION["success"]."urunler veritabanına başarı ile eklendi.";
-
-                        /* EK GORSEL EKLEME ALANI */
-
-                        $ids = $db->lastInsertId();
-                        if(isset($_FILES['img_ek'])){
-                            $resimler_urun = array();
-                            foreach ($_FILES['img_ek'] as $k => $l) {
-                                foreach ($l as $i => $v) {
-                                if (!array_key_exists($i, $resimler_urun))
-                                        $resimler_urun[$i] = array();
-                                        $resimler_urun[$i][$k] = $v;
-                                }
-                            }
-                            foreach ($resimler_urun as $image_urun){
-                            @$foo2 = new Upload($image_urun);
-                            //$rand=seo($baslik);
-                                    if ($foo2->uploaded) {
-                                    $rsmbaslik = seo($_POST["title"]);
-                                    $foo2->file_new_name_body = $rsmbaslik;
-                                    $resim=$foo2->file_new_name_body;
-                                    $foo2->image_resize = true;
-                                    $foo2->image_convert = 'jpg';
-                                    //$foo2->jpeg_quality = 65;
-                                    $foo2->image_x = 1920;
-                                    $foo2->image_ratio_y = true;
-                                    $foo2->Process('../assets/img/product/imgs/');
-                
-                                    // $foo2->file_new_name_body = $rsmbaslik;
-                                    // $resim=$foo2->file_new_name_body;
-                                    // $foo2->image_resize = true;
-                                    // $foo2->image_convert = 'jpg';
-                                    // //$foo2->jpeg_quality = 65;
-                                    // $foo2->image_x = 526;
-                                    // $foo2->image_ratio_y = true;
-                                    // $foo2->Process('../assets/images/blog/little/');
-                                    
-                                    if ( $foo2->processed ) {
-
-
-                                        $imgs = $foo2->file_dst_name; 
-                                        
-
-
-                                        
-                            
-
-                                        $doinsert2 = $db->prepare("INSERT INTO img SET
-                                        productid=?,
-                                        img=?");
-
-                                        $insert2 = $doinsert2->execute(array(
-                                            $ids,
-                                            $imgs
-                                        ));
-                                        
-                                        
-
-                                        
-                                    }else{
-                                        //$_SESSION["failure"] = "Resim yüklerken bir hata meydana geldi.".$foo->error;
-                                    }
-                                }
-                            }
-                    }
-
-                    /* EK GORSEL EKLEME ALANI */
-
-
-
                         header('Location:'.$siplink.'urunler');
                     }else{
                         $_SESSION["failure"] = "urunler veritabanına eklenirken bir hata meydana geldi.";
@@ -356,11 +277,6 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                     langid=:langid,
                     category=:category,
                     dimensions=:dimensions,
-                    special=:special,
-                    description_main=:description_main,
-                    description_main_sub=:description_main_sub,
-                    product_spekt=:product_spekt,
-                    packet_spekt=:packet_spekt,
                     active=:active,
                     seotitle=:seotitle,
                     seodescription=:seodescription,
@@ -369,18 +285,13 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                     WHERE id = :editid");
                     $update = $doupdate->execute(array(
                         "title" => $_POST["title"],
-                        "description" => "",
+                        "description" => $_POST["description"],
                         "img" => $img,
                         "img_alt" => $_POST["img_alt"],
                         "lang" => $_POST["lang"],
                         "langid" => $_POST["langid"],
                         "category" => $_POST["category"],
                         "dimensions" => $_POST["dimensions"],
-                        "special" => $_POST["special"],
-                        "description_main" => $_POST["description_main"],
-                        "description_main_sub" => $_POST["description_main_sub"],
-                        "product_spekt" => $_POST["product_spekt"],
-                        "packet_spekt" => $_POST["packet_spekt"],
                         "active" => $active,
                         "seotitle" => $seotitle,
                         "seodescription" => $_POST["seodescription"],
@@ -392,72 +303,6 @@ if(isset($_POST["submitted"]) AND isset($_POST["operation"]) AND permission_cont
                         $_SESSION["success"] = $_SESSION["success"]."urunler başarı ile güncellendi.";
 
 
-
-                        /* EK GORSEL EKLEME ALANI */
-
-
-                        if(isset($_FILES['img_ek'])){
-                            $resimler_urun = array();
-                            foreach ($_FILES['img_ek'] as $k => $l) {
-                                foreach ($l as $i => $v) {
-                                if (!array_key_exists($i, $resimler_urun))
-                                        $resimler_urun[$i] = array();
-                                        $resimler_urun[$i][$k] = $v;
-                                }
-                            }
-                            foreach ($resimler_urun as $image_urun){
-                            @$foo2 = new Upload($image_urun);
-                            //$rand=seo($baslik);
-                                    if ($foo2->uploaded) {
-                                    $rsmbaslik = seo($_POST["title"]);
-                                    $foo2->file_new_name_body = $rsmbaslik;
-                                    $resim=$foo2->file_new_name_body;
-                                    $foo2->image_resize = true;
-                                    $foo2->image_convert = 'jpg';
-                                    //$foo2->jpeg_quality = 65;
-                                    $foo2->image_x = 1920;
-                                    $foo2->image_ratio_y = true;
-                                    $foo2->Process('../assets/img/product/imgs/');
-                
-                                    // $foo2->file_new_name_body = $rsmbaslik;
-                                    // $resim=$foo2->file_new_name_body;
-                                    // $foo2->image_resize = true;
-                                    // $foo2->image_convert = 'jpg';
-                                    // //$foo2->jpeg_quality = 65;
-                                    // $foo2->image_x = 526;
-                                    // $foo2->image_ratio_y = true;
-                                    // $foo2->Process('../assets/images/blog/little/');
-                                    
-                                    if ( $foo2->processed ) {
-
-
-                                        $imgs = $foo2->file_dst_name; 
-                                        $ids = $editid;
-
-
-                                        
-                            
-
-                                        $doinsert2 = $db->prepare("INSERT INTO img SET
-                                        productid=?,
-                                        img=?");
-
-                                        $insert2 = $doinsert2->execute(array(
-                                            $ids,
-                                            $imgs
-                                        ));
-                                        
-                                        
-
-                                        
-                                    }else{
-                                        //$_SESSION["failure"] = "Resim yüklerken bir hata meydana geldi.".$foo->error;
-                                    }
-                                }
-                            }
-                    }
-
-                    /* EK GORSEL EKLEME ALANI */
 
 
 

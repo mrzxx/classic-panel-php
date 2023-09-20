@@ -42,6 +42,7 @@ $blog_tr = $db->query("SELECT * FROM blog WHERE langid=0", PDO::FETCH_ASSOC);
                             <select class="form-control" name="lang" id="title2" required>
                                 <option value ="tr">Türkçe</option>
                                 <option value ="en">İngilizce</option>
+                                <option value ="ar">Arapça</option>
                             </select>
                         </div>
                         <div class="finput">

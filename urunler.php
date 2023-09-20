@@ -39,14 +39,15 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                         </div>
                         <div class="finput">
                             <label for="title2">Ürün Dili</label>
-                            <select class="form-control" name="lang" id="title2" required>
+                            <select class="form-control" name="lang" id="title2">
                                 <option value ="tr">Türkçe</option>
                                 <option value ="en">İngilizce</option>
+                                <option value ="ar">Arapça</option>
                             </select>
                         </div>
                         <div class="finput">
                             <label for="title2">Ürün Kategori</label>
-                            <select class="form-control" name="category" id="title2" required>
+                            <select class="form-control" name="category" id="title2">
                                 <option value ="" selected>Kategori Seçin</option>
                                 <?php 
                                 if ( $categories->rowCount() ){
@@ -62,29 +63,23 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                         </div>
                         <div class="finput">
                             <label for="title">Ürün Başlığı</label>
-                            <input class="form-control" type="text" name="title" id="title" required>
+                            <input class="form-control" type="text" name="title" id="title">
                         </div>
                         <div class="finput">
                             <label for="description">Ürün Açıklaması NORMAL</label>
-                            <textarea class="form-control" name="description_main" id="description_main" rows="10" required></textarea>
-                        </div>
-                        <div class="finput">
-                            <label for="description">Ürün Açıklaması BOTTOM</label>
-                            <textarea class="form-control" name="description_main_sub" id="description_main_sub" rows="10" required></textarea>
-                        </div>
-                        <div class="finput">
-                            <label for="img">Ürün Resim (1920x1080):</label>
-                            <input id="img" class="form-control" type="file" name="img" data-filename-placement="inside" required>
+                            <textarea class="form-control" name="description_main" id="description_main" rows="10"></textarea>
                         </div>
 
                         <div class="finput">
-                            <label for="img_ek">Ürün Ek Resimler (1920x1080):</label>
-                            <input id="img_ek" class="form-control" type="file" name="img_ek[]" data-filename-placement="inside" multiple required>
+                            <label for="img">Ürün Resim (1920x1080):</label>
+                            <input id="img" class="form-control" type="file" name="img" data-filename-placement="inside">
                         </div>
+
+
 
                         <div class="finput">
                             <label for="img_alt">Ürün Resim ALT (SEO)</label>
-                            <input class="form-control" type="text" name="img_alt" id="img_alt" required>
+                            <input class="form-control" type="text" name="img_alt" id="img_alt">
                         </div>
 
                         <div class="finput">
@@ -92,25 +87,12 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                             <input class="form-control" type="text" name="dimensions" id="dimensions">
                         </div>
 
-                        <div class="finput">
-                            <label for="special">Ürün SPESYEL</label>
-                            <input class="form-control" type="text" name="special" id="special">
-                        </div>
-
-                        <div class="finput">
-                            <label for="product_spekt">Ürün SPEKT</label>
-                            <textarea class="form-control" name="product_spekt" id="product_spekt" rows="10"></textarea>
-                        </div>
-
-                        <div class="finput">
-                            <label for="packet_spekt">Paket SPEKT</label>
-                            <textarea class="form-control" name="packet_spekt" id="packet_spekt" rows="10"></textarea>
-                        </div>
+            
 
 
                         <div class="finput">
                             <label for="seotitle">SEO Title (Zorunlu)</label>
-                            <input class="form-control" type="text" name="seotitle" id="seotitle" required>
+                            <input class="form-control" type="text" name="seotitle" id="seotitle">
                         </div>
                         <div class="finput">
                             <label for="seodescription">SEO Desc* (Zorunlu)</label>
@@ -149,14 +131,14 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                         </div>
                         <div class="finput">
                             <label for="title2">Ürün Dili</label>
-                            <select class="form-control" name="lang" id="title2" required>
+                            <select class="form-control" name="lang" id="title2">
                                 <option <?php if($project["lang"] == "tr"){echo 'selected';} ?> value ="tr">Türkçe</option>
                                 <option <?php if($project["lang"] == "en"){echo 'selected';} ?> value ="en">İngilizce</option>
                             </select>
                         </div>
                         <div class="finput">
                             <label for="title2">Ürün Kategori</label>
-                            <select class="form-control" name="category" id="title2" required>
+                            <select class="form-control" name="category" id="title2">
                                 <option value ="" selected>Kategori Seçin</option>
                                 <?php 
                                 if ( $categories->rowCount() ){
@@ -172,16 +154,14 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                         </div>
                         <div class="finput">
                             <label for="title">Ürün Başlığı</label>
-                            <input class="form-control" type="text" value="<?php echo $project["title"]; ?>" name="title" id="title" required>
+                            <input class="form-control" type="text" value="<?php echo $project["title"]; ?>" name="title" id="title">
                         </div>
                         <div class="finput">
                             <label for="description">Ürün Açıklaması NORMAL</label>
-                            <textarea class="form-control" name="description_main" id="description_main" rows="10" required><?php echo $project["description_main"]; ?></textarea>
+                            <textarea class="form-control" name="description_main" id="description_main" rows="10"><?php echo $project["description_main"]; ?></textarea>
                         </div>
-                        <div class="finput">
-                            <label for="description">Ürün Açıklaması BOTTOM</label>
-                            <textarea class="form-control" name="description_main_sub" id="description_main_sub" rows="10" required><?php echo $project["description_main_sub"]; ?></textarea>
-                        </div>
+
+                        
                         <div class="finput">
                             <label for="img">Ürün Resim (1920x1080):</label>
                             <input id="img" class="form-control" type="file" name="img" data-filename-placement="inside">
@@ -192,32 +172,13 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                                 } ?>
                         </div>
 
-                        <div class="finput">
-                            <label for="img_ek">Ürün Ek Resimler (1920x1080):</label>
-                            <input id="img_ek" class="form-control" type="file" name="img_ek[]" data-filename-placement="inside" multiple>
 
-                            <?php 
-                                $myzid = $project["id"];
-                                $query3000 = $db->query("SELECT * FROM img WHERE productid={$myzid}",PDO::FETCH_ASSOC);
-                                if($query3000->rowCount() > 0){
-                                    foreach ($query3000 as $row) {
-                                        ?>
-                                            <img id="anaresim<?php echo $row["id"]; ?>" width="180" src="<?php echo $mainlink.'assets/img/product/imgs/'.$row['img']; ?>" alt=""/>
-                                            <a class="anaresimsil2" delid="<?php echo $row["id"]; ?>" style="display:block;margin-top:10px;color:red;" id="<?php echo $row["id"]; ?>&anaresimsil=3000&table=img" href="#">Ek Resim Sil (X)</a>
-                                        <?php
-                                    }
-                                }
-                            ?>
-                                   
-
-
-                        </div>
 
 
 
                         <div class="finput">
                             <label for="img_alt">Ürün Resim ALT (SEO)</label>
-                            <input class="form-control" type="text" value="<?php echo $project["img_alt"]; ?>" name="img_alt" id="img_alt" required>
+                            <input class="form-control" type="text" value="<?php echo $project["img_alt"]; ?>" name="img_alt" id="img_alt">
                         </div>
 
                         <div class="finput">
@@ -225,25 +186,14 @@ $categories = $db->query("SELECT * FROM category ORDER BY id", PDO::FETCH_ASSOC)
                             <input class="form-control" type="text" value="<?php echo $project["dimensions"]; ?>" name="dimensions" id="dimensions">
                         </div>
 
-                        <div class="finput">
-                            <label for="special">Ürün SPECIAL</label>
-                            <input class="form-control" type="text" value="<?php echo $project["special"]; ?>" name="special" id="special">
-                        </div>
 
-                        <div class="finput">
-                            <label for="product_spekt">Ürün SPEKT</label>
-                            <textarea class="form-control" name="product_spekt"  id="product_spekt" rows="10" required><?php echo $project["product_spekt"]; ?></textarea>
-                        </div>
+           
 
-                        <div class="finput">
-                            <label for="packet_spekt">Paket SPEKT</label>
-                            <textarea class="form-control" name="packet_spekt" id="packet_spekt" rows="10" required><?php echo $project["packet_spekt"]; ?></textarea>
-                        </div>
 
 
                         <div class="finput">
                             <label for="seotitle">SEO Title (Zorunlu)</label>
-                            <input class="form-control" type="text" name="seotitle" id="seotitle" value="<?php echo $project["seotitle"]; ?>" required>
+                            <input class="form-control" type="text" name="seotitle" id="seotitle" value="<?php echo $project["seotitle"]; ?>">
                         </div>
                         <div class="finput">
                             <label for="seodescription">SEO Desc* (Zorunlu)</label>
